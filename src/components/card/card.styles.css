@@ -1,0 +1,28 @@
+.card-container {
+    width: 350px;
+    height: 250px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    position: relative;
+
+}
+
+.card-container .text-container {
+    word-break: break-word;
+    overflow: hidden;
+    padding: 0px 5px;
+    height: 220px;
+}
+
+.card-container .text-container .title-container {
+    text-align: center;
+}
+
+.card-container .btn-container {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
