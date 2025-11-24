@@ -1,6 +1,6 @@
 .card-list-container {
     display: grid;
-    grid-column: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin: 0 auto;
     padding: 5px 5px;

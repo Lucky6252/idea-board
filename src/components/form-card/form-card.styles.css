@@ -1,0 +1,22 @@
+.title-container {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 3.2rem;
+    margin-bottom: 5px;
+}
+
+.title-container input {
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.desc-container {
+    display: flex;
+    gap: 2px;
+}
+
+.desc-container textarea {
+    border: none;
+    
+}
