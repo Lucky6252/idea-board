@@ -5,9 +5,15 @@ import './form-card.styles.css'
 const FormCard = () => {
 
     const[description, setDescription] = useState('');
+    const redZone = 100;
 
     const handleChange = (event) => {
-        setDescription(event.target.value);
+
+         setDescription(event.target.value);
+    }
+
+    const counterColorChange = {
+        color: description.length >= redZone ? 'red' : 'black',
     }
 
 
@@ -24,11 +30,13 @@ const FormCard = () => {
                 className="description-input"
                 value={description} 
                 onChange={handleChange}
+                maxLength={140}
                 rows={10}
                 cols={50}
                 placeholder="Enter your idea descrption"/>
             </div>
-            <p>{description.length}/140</p>
+            <p style={counterColorChange} className="">{description.length}/140</p>
+            
         </div>
     );
 }
