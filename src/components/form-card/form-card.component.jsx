@@ -2,34 +2,29 @@ import { useState, useEffect } from "react";
 import "./form-card.styles.css";
 
 const FormCard = () => {
-
-// declaration  of all hooks will need
+  // declaration  of all hooks will need
   const [idea, setIdea] = useState({
     title: "",
     description: "",
   });
 
-  const [ideas, setIdeas] = useState([{
-    title: '',
-    description: ''
-  }]);
+  const [ideas, setIdeas] = useState([]);
 
   const [count, setCount] = useState(0);
 
-
-//   change colore when count is over 100
+  //   change colore when count is over 100
   const counterColorChange = {
     color: count >= 100 ? "red" : "black",
   };
 
-//   handle changes in the input fields
+  //   handle changes in the input fields
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name === "description") {
       setCount(value.length);
       setIdea((prev) => {
-        return {...prev, [name]: value };
+        return { ...prev, [name]: value };
       });
     } else {
       setIdea((prev) => {
@@ -39,36 +34,35 @@ const FormCard = () => {
   };
 
   useEffect(() => {
-    const dataFromLocalStorage = localStorage.getItem('ideas');
-     if(dataFromLocalStorage){
-        setIdeas(JSON.parse(dataFromLocalStorage));
-     }
-  }, [])
+    const dataFromLocalStorage = localStorage.getItem("ideas");
+    if (dataFromLocalStorage) {
+      setIdeas(JSON.parse(dataFromLocalStorage));
+    }
+  }, []);
 
   useEffect(() => {
-    console.log(ideas);
-    localStorage.setItem("ideas", JSON.stringify(ideas));
-  }, [ideas])
-
-
+    if (idea.description.length > 0 && idea.title.length > 0) {
+      console.log(ideas);
+      localStorage.setItem("ideas", JSON.stringify(ideas));
+      setCount(0);
+      setIdea({
+        title: "",
+        description: "",
+      });
+    }
+  }, [ideas]);
 
   const saveIdea = (e) => {
     e.preventDefault();
 
-    if(idea.title.length > 0 && idea.description.length > 0){
-        setIdeas(prev => [...prev, idea]);
-    }else{
-        alert('Please enter information to both inputs');
+    if (idea.title.length > 0 && idea.description.length > 0) {
+      setIdeas((prev) => [...prev, idea]);
+    } else {
+      alert("Please enter information to both inputs");
     }
-
-    setCount(0);
-    setIdea({
-        title: '',
-        description: ''
-    });
   };
 
-  console.log(ideas);
+  //console.log(ideas);
 
   return (
     <form onSubmit={saveIdea} className="card-container">
