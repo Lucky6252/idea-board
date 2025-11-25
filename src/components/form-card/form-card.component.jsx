@@ -8,11 +8,14 @@ const FormCard = () => {
     title: "",
     description: "",
   });
+
   const [ideas, setIdeas] = useState([{
     title: '',
     description: ''
-  }])
+  }]);
+
   const [count, setCount] = useState(0);
+
 
 //   change colore when count is over 100
   const counterColorChange = {
@@ -25,9 +28,8 @@ const FormCard = () => {
 
     if (name === "description") {
       setCount(value.length);
-
       setIdea((prev) => {
-        return { ...prev, [name]: value };
+        return {...prev, [name]: value };
       });
     } else {
       setIdea((prev) => {
@@ -38,10 +40,16 @@ const FormCard = () => {
 
   useEffect(() => {
     const dataFromLocalStorage = localStorage.getItem('ideas');
-    if(dataFromLocalStorage){
-        setIdeas(prev =>[...prev, dataFromLocalStorage])
-    }
+     if(dataFromLocalStorage){
+        setIdeas(JSON.parse(dataFromLocalStorage));
+     }
   }, [])
+
+  useEffect(() => {
+    console.log(ideas);
+    localStorage.setItem("ideas", JSON.stringify(ideas));
+  }, [ideas])
+
 
 
   const saveIdea = (e) => {
@@ -49,8 +57,6 @@ const FormCard = () => {
 
     if(idea.title.length > 0 && idea.description.length > 0){
         setIdeas(prev => [...prev, idea]);
-        
-        //localStorage.setItem("ideas", JSON.stringify(idea));
     }else{
         alert('Please enter information to both inputs');
     }
