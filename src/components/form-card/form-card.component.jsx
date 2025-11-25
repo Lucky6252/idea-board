@@ -1,72 +1,103 @@
-import { useState } from "react";
-import './form-card.styles.css'
-
+import { useState, useEffect } from "react";
+import "./form-card.styles.css";
 
 const FormCard = () => {
 
+// declaration  of all hooks will need
+  const [idea, setIdea] = useState({
+    title: "",
+    description: "",
+  });
+  const [ideas, setIdeas] = useState([{
+    title: '',
+    description: ''
+  }])
+  const [count, setCount] = useState(0);
 
-    const[description, setDescription] = useState('');
-    const [title, setTitle] = useState('');
-    const [idea, setIdea] = useState({});
-    const redZone = 100;
+//   change colore when count is over 100
+  const counterColorChange = {
+    color: count >= 100 ? "red" : "black",
+  };
 
-    const descriptionChange = (event) => {
-         setDescription(event.target.value);
+//   handle changes in the input fields
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "description") {
+      setCount(value.length);
+
+      setIdea((prev) => {
+        return { ...prev, [name]: value };
+      });
+    } else {
+      setIdea((prev) => {
+        return { ...prev, [name]: value };
+      });
     }
+  };
 
-    const titleChange = (event) => {
-        setTitle(event.target.value);
-        }
-
-    const counterColorChange = {
-        color: description.length >= redZone ? 'red' : 'black',
+  useEffect(() => {
+    const dataFromLocalStorage = localStorage.getItem('ideas');
+    if(dataFromLocalStorage){
+        setIdeas(prev =>[...prev, dataFromLocalStorage])
     }
+  }, [])
 
-    const addIdea = () => {
-        if(description.length != 0 || title.length != 0){
-            const newIdea = {
-                title: title,
-                description: description
-            };
-            setIdea(newIdea)
-            console.log(JSON.stringify(newIdea));
-        }
+
+  const saveIdea = (e) => {
+    e.preventDefault();
+
+    if(idea.title.length > 0 && idea.description.length > 0){
+        setIdeas(prev => [...prev, idea]);
         
-        
+        //localStorage.setItem("ideas", JSON.stringify(idea));
+    }else{
+        alert('Please enter information to both inputs');
     }
 
-    const checkingValues = () => {
-        console.log(idea);
-    }
+    setCount(0);
+    setIdea({
+        title: '',
+        description: ''
+    });
+  };
 
+  console.log(ideas);
 
-    return(
-        <div className="card-container">
-            <h2>Create New Card</h2>
-            <div className="title-container">
-                <label>Title:</label>
-                <input value={title} onChange={titleChange} placeholder="Enter your idea title"/>
-            </div>
-             <div className="desc-container">
-                <label>Description:</label>
-                <textarea 
-                className="description-input"
-                value={description} 
-                onChange={descriptionChange}
-                maxLength={140}
-                rows={8}
-                cols={50}
-                placeholder="Enter your idea descrption"/>
-            </div>
-            <div className="btnContainer">
-                <button onClick={addIdea}>Save</button>
-                <button onClick={checkingValues}>Check</button>
-            </div>
-            <p style={counterColorChange} className="">{description.length}/140</p>
-            
-            
-        </div>
-    );
-}
+  return (
+    <form onSubmit={saveIdea} className="card-container">
+      <h2>Create New Card</h2>
+      <div className="title-container">
+        <label>Title:</label>
+        <input
+          name="title"
+          value={idea.title}
+          onChange={handleChange}
+          placeholder="Enter your idea title"
+        />
+      </div>
+
+      <div className="desc-container">
+        <label>Description:</label>
+        <textarea
+          className="description-input"
+          name="description"
+          value={idea.description}
+          onChange={handleChange}
+          maxLength={140}
+          rows={8}
+          cols={50}
+          placeholder="Enter your idea descrption"
+        />
+      </div>
+      <div className="btnContainer">
+        <button type="submit">Save</button>
+      </div>
+      <p style={counterColorChange} className="">
+        {count}/140
+      </p>
+    </form>
+  );
+};
 
 export default FormCard;
