@@ -8,24 +8,26 @@ function App() {
 
   const [ideas, setIdeas] = useState([]);
 
-  setIdeas([
-    {
-      title: "Testing title",
-      description: "Test Description",
-    },
-    {
-      title: "Testing title 2",
-      description: "Test Description 2",
-    },
-    {
-      title: "Testing title 3",
-      description: "Test Description 3",
-    },
-    {
-      title: "Testing title 4",
-      description: "Test Description 4",
-    },
-  ]);
+  // const ideas = [
+  //   {
+  //     title: "Testing title",
+  //     description: "Test Description"
+  //   },
+  //   {
+  //     title: "Testing title 2",
+  //     description: "Test Description 2"
+  //   },
+  //   {
+  //     title: "Testing title 3",
+  //     description: "Test Description 3"
+  //   },
+  //   {
+  //     title: "Testing title 4",
+  //     description: "Test Description 4"
+  //   },
+  // ];
+
+  //setIdeas(updateData);
 
   useEffect(() => {
     const data = localStorage.getItem("ideas");
@@ -39,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <Head />
-      {/* <CardList ideas={ideas} /> */}
+      <CardList ideas={ideas} />
     </div>
   );
 }

@@ -10,7 +10,6 @@ const FormCard = () => {
   const [ideas, setIdeas] = useState([]);
   const [count, setCount] = useState(0);
 
-
   //   change colore when count is over 100
   const counterColorChange = {
     color: count >= 100 ? "red" : "black",
@@ -40,7 +39,14 @@ const FormCard = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("ideas", JSON.stringify(ideas));
+    if (idea.title.length > 0 && idea.description.length > 0) {
+      localStorage.setItem("ideas", JSON.stringify(ideas));
+      setCount(0);
+      setIdea({
+        title: "",
+        description: "",
+      });
+    }
   }, [ideas]);
 
   const saveIdea = (e) => {
@@ -48,17 +54,10 @@ const FormCard = () => {
 
     if (idea.title.length > 0 && idea.description.length > 0) {
       setIdeas((prev) => [...prev, idea]);
-      setCount(0);
-      setIdea({
-        title: "",
-        description: "",
-      });
     } else {
       alert("Please enter information to both inputs");
     }
   };
-
-  //console.log(ideas);
 
   return (
     <form onSubmit={saveIdea} className="card-container">
