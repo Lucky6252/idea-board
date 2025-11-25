@@ -2,12 +2,12 @@ import Card from "../card/card.component";
 import FormCard from "../form-card/form-card.component";
 import './card-list.styles.css'
 
-const CardList = ({ideaCards}) => {
+const CardList = ({ideas}) => {
     return (
         <div className="card-list-container">
-        {ideaCards.map(({title, description, id}, idx)=>{
+        {ideas.map(({title, description}, idx)=>{
             return (
-                <Card key={`${title}-${idx}`} title={title} description={description} id={id}/>
+                <Card key={`${title}-${idx}`} title={title} description={description}/>
             )
         })}
         <FormCard/>
