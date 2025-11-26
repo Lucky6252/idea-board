@@ -45,12 +45,18 @@ const FormCard = () => {
       setIdea({
         title: "",
         description: "",
+        
       });
+
+      const dataFromLocalStorage = localStorage.getItem("ideas");
+    if (dataFromLocalStorage) {
+      setIdeas(JSON.parse(dataFromLocalStorage));
+    }
     }
   }, [ideas]);
 
   const saveIdea = (e) => {
-    e.preventDefault();
+    //e.preventDefault();
 
     if (idea.title.length > 0 && idea.description.length > 0) {
       setIdeas((prev) => [...prev, idea]);
