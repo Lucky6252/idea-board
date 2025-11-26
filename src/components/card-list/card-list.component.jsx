@@ -7,7 +7,7 @@ const CardList = ({ideas}) => {
         <div className="card-list-container">
         {ideas.map(({title, description}, idx)=>{
             return (
-                <Card key={`${title}-${idx}`} title={title} description={description}/>
+                <Card key={`${title}-${idx}`} title={title} description={description} index={idx}/>
             )
         })}
         <FormCard/>
