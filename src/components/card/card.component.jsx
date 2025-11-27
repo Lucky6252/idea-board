@@ -1,42 +1,39 @@
-import { useEffect, useState } from "react";
 import "./card.styles.css";
 
-const Card = ({ title, description, idx }) => {
-  const [ideas, setIdeas] = useState();
+const Card = ({ title, description, onRemove }) => {
 
-  useEffect(() => {
-    const data = localStorage.getItem("ideas");
-    if (data) {
-      setIdeas(JSON.parse(data));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const data = localStorage.getItem("ideas");
+  //   if (data) {
+  //     setIdeas(JSON.parse(data));
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if(ideas){
-      localStorage.setItem('ideas',JSON.stringify(ideas))
-    }
+  // useEffect(() => {
+  //   if(ideas){
+  //     localStorage.setItem('ideas',JSON.stringify(ideas))
+  //   }
     
 
-  }, [ideas]);
+  // }, [ideas]);
 
-  const buttonHandle = (i) => {
-    console.log(`The index given is ${i}`);
-    if (ideas) {
-      const notRemoved = ideas.filter((idea, index) => index !== i);
-      setIdeas(notRemoved);
+  // const buttonHandle = (i) => {
+  //   if (ideas) {
+  //     const notRemoved = ideas.filter((idea, index) => index !== i);
+  //     setIdeas(notRemoved);
       
       
-    }
-  }
+  //   }
+  // }
   
-  console.log(ideas);
+  // console.log(ideas);
 
   return (
     <div className="card-container">
       <h2>{title}</h2>
       <p>{description}</p>
 
-      <button onClick={() => buttonHandle(idx)}>delete</button>
+      <button onClick={onRemove}>delete</button>
     </div>
   );
 };
