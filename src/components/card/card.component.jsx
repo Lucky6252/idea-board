@@ -11,6 +11,14 @@ const Card = ({ title, description, idx }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if(ideas){
+      localStorage.setItem('ideas',JSON.stringify(ideas))
+    }
+    
+
+  }, [ideas]);
+
   const buttonHandle = (i) => {
     console.log(`The index given is ${i}`);
     if (ideas) {
