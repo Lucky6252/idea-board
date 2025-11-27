@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import "./card.styles.css";
 
 const Card = ({ title, description, idx }) => {
-
-
   const [ideas, setIdeas] = useState();
 
   useEffect(() => {
@@ -13,21 +11,24 @@ const Card = ({ title, description, idx }) => {
     }
   }, []);
 
-  const removeIdea = () => {
-    //console.log(ideas.length);
-    // const notRemoved = ideas.map(() => {console.log('works');})
-    //setIdeas(notRemoved);
-    //console.log(notRemoved);
-  };
-  //console.log(ideas.length);
-  //console.log(ideas);
+  const buttonHandle = (i) => {
+    console.log(`The index given is ${i}`);
+    if (ideas) {
+      const notRemoved = ideas.filter((idea, index) => index !== i);
+      setIdeas(notRemoved);
+      
+      
+    }
+  }
+  
+  console.log(ideas);
 
   return (
     <div className="card-container">
       <h2>{title}</h2>
       <p>{description}</p>
 
-      <button onClick={removeIdea()}>delete</button>
+      <button onClick={() => buttonHandle(idx)}>delete</button>
     </div>
   );
 };

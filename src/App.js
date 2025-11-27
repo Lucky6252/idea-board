@@ -15,8 +15,6 @@ function App() {
     }
   }, []);
 
-  console.log(ideas);
-
   return (
     <div className="App">
       <Head />
