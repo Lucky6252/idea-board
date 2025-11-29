@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 import "./form-card.styles.css";
 
-const FormCard = () => {
-  // declaration  of all hooks will need
+const FormCard = (props) => {
+  //-------------------declaration of all varriables-----------------------------------------------------------------------------
+
   const [idea, setIdea] = useState({
     title: "",
     description: "",
   });
-  const [ideas, setIdeas] = useState([]);
+
   const [count, setCount] = useState(0);
 
-  //   change colore when count is over 100
+  //-------------------- functions-----------------------------------------------------------------------------------------------
+
   const counterColorChange = {
-    color: count >= 100 ? "red" : "black",
+    color: count >= 100 ? "red" : "black", //Change text color when character count gets to 100
+    visibility: count >= 100 ? "visible" : "hidden", //Make count visible when character count gets to 100
   };
 
   //   handle changes in the input fields
@@ -20,6 +23,7 @@ const FormCard = () => {
     const { name, value } = e.target;
 
     if (name === "description") {
+      //Check if we are changing description to keep control of count
       setCount(value.length);
       setIdea((prev) => {
         return { ...prev, [name]: value };
@@ -31,40 +35,22 @@ const FormCard = () => {
     }
   };
 
-  useEffect(() => {
-    const dataFromLocalStorage = localStorage.getItem("ideas");
-    if (dataFromLocalStorage) {
-      setIdeas(JSON.parse(dataFromLocalStorage));
-    }
-  }, []);
+  const saveIdea = (e) => {
+    e.preventDefault();
 
-  useEffect(() => {
     if (idea.title.length > 0 && idea.description.length > 0) {
-      localStorage.setItem("ideas", JSON.stringify(ideas));
+      //Making sure we do not have empty values for both title and description
       setCount(0);
       setIdea({
         title: "",
         description: "",
-        
       });
-
-      const dataFromLocalStorage = localStorage.getItem("ideas");
-    if (dataFromLocalStorage) {
-      setIdeas(JSON.parse(dataFromLocalStorage));
-    }
-    }
-  }, [ideas]);
-
-  const saveIdea = (e) => {
-    //e.preventDefault();
-
-    if (idea.title.length > 0 && idea.description.length > 0) {
-      setIdeas((prev) => [...prev, idea]);
+      props.onSubmit(idea);
     } else {
       alert("Please enter information to both inputs");
     }
   };
-
+  //----------------------html-----------------------------------------------------------------------------------------------------
   return (
     <form onSubmit={saveIdea} className="card-container">
       <h2>Create New Card</h2>
@@ -94,9 +80,7 @@ const FormCard = () => {
       <div className="btnContainer">
         <button type="submit">Save</button>
       </div>
-      <p style={counterColorChange} className="">
-        {count}/140
-      </p>
+      <p style={counterColorChange}>{count}/140</p>
     </form>
   );
 };

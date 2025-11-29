@@ -4,33 +4,49 @@ import "./card-list.styles.css";
 import { useState, useEffect } from "react";
 
 const CardList = () => {
+  //------------------------------------------- declaration of all values ----------------------------------------------------
+  
   const [cards, setICards] = useState();
 
+  //----------------------------------------------------useEffects ------------------------------------------------------------
+  
   useEffect(() => {
-    const data = localStorage.getItem("ideas");
+    const data = localStorage.getItem("ideas");//get data from our localStorage database
     if (data) {
       setICards(JSON.parse(data));
     }
-  }, []);
+  }, []);//Runs only first time the page render
 
   useEffect(() => {
     if (cards) {
-        console.log('In useEffect monitoring cards')
-      localStorage.setItem("ideas", JSON.stringify(cards));
+      localStorage.setItem("ideas", JSON.stringify(cards));//Updates our localStorage database with updated valus
     }
-  }, [cards]);
+  }, [cards]);//Runs when card value is updated
 
-  const cardRemoved = (cardID) => {
+  //---------------------------------------------------- Functions --------------------------------------------------------------
+  
+  
+  const cardRemoved = (cardID) => {//Removes a card
     if (cards) {
       const notRemoved = cards.filter((idea, index) => index !== cardID);
       if(notRemoved){
         setICards(notRemoved);
       }
       
-      //console.log(notRemoved);
     }
   };
-  console.log(cards)
+
+  const addCard = (idea) => {//Add idea as a card
+     if (idea.title.length > 0 && idea.description.length > 0) {
+      setICards((prev)=>[...prev, idea])
+      
+    } else {
+      alert("New idea from Form Card is came empty");
+    }
+
+  }
+
+  //---------------------------------------------------- Returned HTML ----------------------------------------------------------
 
   return (
     <div className="card-list-container">
@@ -45,7 +61,7 @@ const CardList = () => {
           />
         );
       })}
-      <FormCard />
+      <FormCard onSubmit={addCard}/>
     </div>
   );
 };
