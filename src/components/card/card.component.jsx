@@ -1,6 +1,6 @@
 import "./card.styles.css";
 
-const Card = ({ title, description, onRemove }) => {
+const Card = ({ title, description, onRemove, onEdit }) => {
 
   return (
     <div className="card-container">
@@ -8,6 +8,7 @@ const Card = ({ title, description, onRemove }) => {
       <p>{description}</p>
 
       <button onClick={onRemove}>delete</button>
+      <button onClick={onEdit}>Edit</button>
     </div>
   );
 };
