@@ -9,6 +9,13 @@ const CardList = () => {
 
   const [cards, setICards] = useState();
   const [showPopup, setShowPopup] = useState(false);
+  const [editedText, setEditedTex] = useState([
+    {
+      title: "",
+      description: "",
+    },
+  ]);
+  const [count, setCount] = useState(0);
 
   //----------------------------------------------------useEffects ------------------------------------------------------------
 
@@ -38,20 +45,37 @@ const CardList = () => {
   };
 
   const editCard = (cardID) => {
-    console.log("We are on edit card");
-    console.log(`Card number ${cardID + 1} is being edited`);
+    setEditedTex(cards.filter((card,index)=>index === cardID)) 
     setShowPopup(true);
+    //setEditedTex
   };
   const closePopup = () => {
     setShowPopup(false);
-  };
 
+  };
+console.log(editedText);
   const addCard = (idea) => {
     //Add idea as a card
     if (idea.title.length > 0 && idea.description.length > 0) {
       setICards((prev) => [...prev, idea]);
     } else {
       alert("New idea from Form Card is came empty");
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "description") {
+      //Check if we are changing description to keep control of count
+      setCount(value.length);
+      setEditedTex((prev) => {
+        return { ...prev, [name]: value };
+      });
+    } else {
+      setEditedTex((prev) => {
+        return { ...prev, [name]: value };
+      });
     }
   };
 
@@ -75,8 +99,30 @@ const CardList = () => {
       <FormCard onSubmit={addCard} />
       {showPopup && (
         <Popup onClose={closePopup}>
-          <h1> This is a title</h1>
-          <p>This is its description</p>
+          <div className="title-container">
+            <label>Title:</label>
+            <input
+              name="title"
+              required
+              value={editedText.title}
+              onChange={handleChange}
+              placeholder="Change the title of your idea here"
+            />
+          </div>
+          <div className="desc-container">
+            <label>Description:</label>
+            <textarea
+              required
+              className="description-input"
+              name="description"
+              value={editedText.description}
+              onChange={handleChange}
+              maxLength={140}
+              rows={8}
+              cols={50}
+              placeholder="Enter a descripton of your idea here"
+            />
+          </div>
         </Popup>
       )}
     </div>
