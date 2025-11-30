@@ -9,12 +9,7 @@ const CardList = () => {
 
   const [cards, setICards] = useState();
   const [showPopup, setShowPopup] = useState(false);
-  const [editedText, setEditedTex] = useState([
-    {
-      title: "",
-      description: "",
-    },
-  ]);
+  const [editedText, setEditedTex] = useState();
   const [count, setCount] = useState(0);
 
   //----------------------------------------------------useEffects ------------------------------------------------------------
@@ -40,12 +35,13 @@ const CardList = () => {
       const notRemoved = cards.filter((idea, index) => index !== cardID);
       if (notRemoved) {
         setICards(notRemoved);
+        handleChange()
       }
     }
   };
 
   const editCard = (cardID) => {
-    setEditedTex(cards.filter((card,index)=>index === cardID)) 
+    setEditedTex(cards.find((card,index)=>index === cardID)); 
     setShowPopup(true);
     //setEditedTex
   };
