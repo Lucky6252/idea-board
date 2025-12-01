@@ -23,3 +23,21 @@
     background-color:rgb(158, 234, 234);
     
 }
+
+.btnContainer {
+    display: flex;
+    padding: 10px;
+    justify-content: flex-end;
+    
+}
+
+.btnSave {
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.btnSave:hover {
+    color: dimgray;
+}

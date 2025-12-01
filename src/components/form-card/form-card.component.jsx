@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./form-card.styles.css";
+import { MdSave } from "react-icons/md";
 
 const FormCard = (props) => {
   //-------------------declaration of all varriables-----------------------------------------------------------------------------
@@ -78,7 +79,8 @@ const FormCard = (props) => {
         />
       </div>
       <div className="btnContainer">
-        <button type="submit">Save</button>
+        {/* <button type="submit">Save</button> */}
+        <MdSave className="btnSave" onClick={saveIdea}/>
       </div>
       <p style={counterColorChange}>{count}/140</p>
     </form>

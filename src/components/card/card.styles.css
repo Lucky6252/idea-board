@@ -41,6 +41,7 @@
   color: black;
   width: 20px;
   height: 30px;
+  cursor: pointer;
 }
 
 .btn-container .delete-btn:hover {
@@ -51,6 +52,7 @@
   color: black;
   width: 20px;
   height: 30px;
+  cursor: pointer;
 }
 
 .btn-container .edit-btn:hover {
