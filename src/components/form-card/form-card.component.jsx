@@ -72,8 +72,8 @@ const FormCard = (props) => {
           value={idea.description}
           onChange={handleChange}
           maxLength={140}
-          rows={8}
-          cols={50}
+          rows={5}
+          cols={35}
           placeholder="Enter your idea descrption"
         />
       </div>

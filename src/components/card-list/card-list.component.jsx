@@ -36,7 +36,6 @@ const CardList = () => {
       const notRemoved = cards.filter((idea, index) => index !== cardID);
       if (notRemoved) {
         setICards(notRemoved);
-        handleChange()
       }
     }
   };
