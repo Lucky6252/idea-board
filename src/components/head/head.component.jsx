@@ -3,7 +3,7 @@ import './head.styles.css'
 
 const Head = () => {
   return (
-    <div>
+    <div className="header">
       <div className="head-container">
       <div className="logo-container">
           <IdeaLogo className="logo" />

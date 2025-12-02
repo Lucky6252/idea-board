@@ -3,6 +3,10 @@
     padding: 30px;
 }
 
+.header {
+    width: 100%;
+}
+
 .head-container .title {
     margin-left: 10px;
 }
@@ -13,4 +17,10 @@
     height: 100px;
 }
 
+@media (min-width: 810px) and (max-width: 1200px) {
+    .head-container {
+        width: 100%;
+
+    }
+}
 
