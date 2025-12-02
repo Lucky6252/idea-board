@@ -5,16 +5,16 @@ import { useEffect, useState } from "react";
 import Footer from "./footer/footer.component";
 
 function App() {
-  const [ideasList, setIdeasList] = useState([]);
+  // const [ideasList, setIdeasList] = useState([]);
 
-  const [ideas, setIdeas] = useState([]);
+  // const [ideas, setIdeas] = useState([]);
 
-  useEffect(() => {
-    const data = localStorage.getItem("ideas");
-    if (data) {
-      setIdeas(JSON.parse(data));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const data = localStorage.getItem("ideas");
+  //   if (data) {
+  //     setIdeas(JSON.parse(data));
+  //   }
+  // }, []);
 
   return (
     <div className="App" >
