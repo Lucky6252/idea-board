@@ -1,26 +1,32 @@
 .head-container {
-    display: flex;
-    padding: 30px;
+  display: flex;
+  padding: 30px;
 }
 
 .header {
-    width: 100%;
+  width: 100%;
 }
 
 .head-container .title {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .logo-container .logo {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  
+
+  transition: transform 0.25s ease-out;
+}
+
+.logo-container .logo:hover {
+    -webkit-box-shadow: 3px 9px 48px -13px rgba(0, 255, 255, 0.58);
+  box-shadow: 3px 9px 48px -13px rgba(0, 255, 255, 0.58);
 }
 
 @media (min-width: 810px) and (max-width: 1200px) {
-    .head-container {
-        width: 100%;
-
-    }
+  .head-container {
+    width: 100%;
+  }
 }
-
