@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./form-card.styles.css";
 import { MdSave } from "react-icons/md";
 
@@ -15,7 +15,7 @@ const FormCard = (props) => {
   //-------------------- functions-----------------------------------------------------------------------------------------------
 
   const counterColorChange = {
-    color: count >= 100 ? "red" : "black", //Change text color when character count gets to 100
+    color: "red",
     visibility: count >= 100 ? "visible" : "hidden", //Make count visible when character count gets to 100
   };
 
@@ -54,7 +54,7 @@ const FormCard = (props) => {
   //----------------------html-----------------------------------------------------------------------------------------------------
   return (
     <form onSubmit={saveIdea} className="card-container">
-      <h2>Create New Card</h2>
+      <h2>Create New Idea Card</h2>
       <div className="title-container">
         <label>Title:</label>
         <input
@@ -75,7 +75,7 @@ const FormCard = (props) => {
           maxLength={140}
           rows={5}
           cols={35}
-          placeholder="Enter your idea descrption"
+          placeholder="Enter your idea descrption. Note it only takes 140 characters"
         />
       </div>
       <div className="btnContainer">

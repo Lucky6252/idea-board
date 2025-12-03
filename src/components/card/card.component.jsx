@@ -9,10 +9,8 @@ const Card = ({ title, description, onRemove, onEdit }) => {
       <h2>{title}</h2>
       <p>{description}</p>
       <div className="btn-container">
-        {/* <button onClick={onRemove}>delete</button> */}
         <MdDelete className="delete-btn" onClick={onRemove}/>
         <MdEditDocument className="edit-btn" onClick={onEdit}/>
-        {/* <button onClick={onEdit}>Edit</button> */}
       </div>
     </div>
   );

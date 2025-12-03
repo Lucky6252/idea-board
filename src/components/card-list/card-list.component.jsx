@@ -10,7 +10,7 @@ const CardList = () => {
   const [cards, setICards] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [editedText, setEditedTex] = useState();
-  const [editedID, setEditedID] = useState()
+  const [editedID, setEditedID] = useState();
   const [count, setCount] = useState(0);
 
   //----------------------------------------------------useEffects ------------------------------------------------------------
@@ -42,21 +42,23 @@ const CardList = () => {
 
   const editCard = (cardID) => {
     setEditedID(cardID);
-    setEditedTex(cards.find((card,index)=>index === cardID)); 
+    setEditedTex(cards.find((card, index) => index === cardID));
     setShowPopup(true);
-    //setEditedTex
   };
   const closePopup = () => {
     const newData = cards.map((item, index) => {
-      if(index === editedID){
-        return {title: editedText.title, description: editedText.description}
+      if (index === editedID) {
+        return { title: editedText.title, description: editedText.description };
       }
-      return item
-    })
-    setICards(newData)
+      return item;
+    });
+    setICards(newData);
     setShowPopup(false);
-
   };
+
+  const cancelEdit = () => {
+    setShowPopup(false);
+  }
 
   const addCard = (idea) => {
     //Add idea as a card
@@ -102,7 +104,8 @@ const CardList = () => {
         })}
       <FormCard onSubmit={addCard} />
       {showPopup && (
-        <Popup onClose={closePopup}>
+        <Popup onClose={closePopup} onCancel={cancelEdit}>
+          <h2>Edit an Idea Card</h2>
           <div className="title-container">
             <label>Title:</label>
             <input
@@ -110,7 +113,6 @@ const CardList = () => {
               required
               value={editedText.title}
               onChange={handleChange}
-              placeholder="Change the title of your idea here"
             />
           </div>
           <div className="desc-container">
@@ -124,7 +126,6 @@ const CardList = () => {
               maxLength={140}
               rows={8}
               cols={50}
-              placeholder="Enter a descripton of your idea here"
             />
           </div>
         </Popup>

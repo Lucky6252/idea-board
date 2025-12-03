@@ -30,3 +30,14 @@
 .btnSave-edit:hover {
   color: dimgray;
 }
+
+.btnCancel-edit {
+  width: 20px;
+  height: 40px;
+  padding-top: 8px;
+  cursor: pointer;
+}
+
+.btnCancel-edit:hover {
+  color: dimgray;
+}
