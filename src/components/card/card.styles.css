@@ -26,6 +26,11 @@
 .card-container h2 {
   text-align: center;
   height: auto;
+  font-size: 1.2rem;
+}
+
+.card-container p {
+  font-size: 0.9rem;
 }
 
 .card-container .btn-container {

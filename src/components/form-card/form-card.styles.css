@@ -4,12 +4,12 @@
 
 .title-container {
     display: flex;
-    gap: 3.2rem;
+    gap: 3.8rem;
     margin-bottom: 5px;
 }
 
 .title-container input {
-    width: 74%;
+    width: 73%;
     border: none;
     border-bottom: 1px solid black;
     background-color:rgb(158, 234, 234);
