@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/idea-board/static/css/main.1c31abdf.css",
+    "main.js": "/idea-board/static/js/main.b16f3cf4.js",
+    "static/js/453.33edbbd6.chunk.js": "/idea-board/static/js/453.33edbbd6.chunk.js",
+    "static/media/subtle-prism.svg": "/idea-board/static/media/subtle-prism.1c96a1671c4f0f82c66b.svg",
+    "static/media/IdeaLogo.svg": "/idea-board/static/media/IdeaLogo.e41ca1c111b0f8ba74410fadb6ccedf3.svg",
+    "index.html": "/idea-board/index.html",
+    "main.1c31abdf.css.map": "/idea-board/static/css/main.1c31abdf.css.map",
+    "main.b16f3cf4.js.map": "/idea-board/static/js/main.b16f3cf4.js.map",
+    "453.33edbbd6.chunk.js.map": "/idea-board/static/js/453.33edbbd6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1c31abdf.css",
+    "static/js/main.b16f3cf4.js"
+  ]
+}
