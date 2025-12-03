@@ -79,10 +79,11 @@ const FormCard = (props) => {
         />
       </div>
       <div className="btnContainer">
-        {/* <button type="submit">Save</button> */}
+       <p className="countLabel" style={counterColorChange}>{count}/140</p>
         <MdSave className="btnSave" onClick={saveIdea}/>
+       
       </div>
-      <p style={counterColorChange}>{count}/140</p>
+      
     </form>
   );
 };
