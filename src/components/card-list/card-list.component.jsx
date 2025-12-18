@@ -45,7 +45,8 @@ const CardList = () => {
     setEditedTex(cards.find((card, index) => index === cardID));
     setShowPopup(true);
   };
-  const closePopup = () => {
+
+  const savePopup = () => {
     const newData = cards.map((item, index) => {
       if (index === editedID) {
         return { title: editedText.title, description: editedText.description };
@@ -104,7 +105,7 @@ const CardList = () => {
         })}
       <FormCard onSubmit={addCard} />
       {showPopup && (
-        <Popup onClose={closePopup} onCancel={cancelEdit}>
+        <Popup onSave={savePopup} onCancel={cancelEdit}>
           <h2>Edit an Idea Card</h2>
           <div className="title-container">
             <label>Title:</label>
