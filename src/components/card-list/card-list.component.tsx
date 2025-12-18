@@ -5,12 +5,22 @@ import { useState, useEffect } from "react";
 import Popup from "../popup/popup.component";
 
 const CardList = () => {
+  type CardType = {
+    title: string;
+    description: string;
+  };
+
+  const DefaultCardValues: CardType[] = {
+    title: "",
+    description: "",
+  };
+
   //------------------------------------------- declaration of all values ----------------------------------------------------
 
-  const [cards, setICards] = useState();
+  const [cards, setICards] = useState<CardType[]>(DefaultCardValues);
   const [showPopup, setShowPopup] = useState(false);
-  const [editedText, setEditedTex] = useState();
-  const [editedID, setEditedID] = useState();
+  const [editedText, setEditedTex] = useState<CardType>();
+  const [editedID, setEditedID] = useState<number>();
   const [count, setCount] = useState(0);
 
   //----------------------------------------------------useEffects ------------------------------------------------------------
@@ -30,7 +40,7 @@ const CardList = () => {
 
   //---------------------------------------------------- Functions --------------------------------------------------------------
 
-  const cardRemoved = (cardID) => {
+  const cardRemoved = (cardID: number) => {
     //Removes a card
     if (cards) {
       const notRemoved = cards.filter((idea, index) => index !== cardID);
@@ -40,28 +50,35 @@ const CardList = () => {
     }
   };
 
-  const editCard = (cardID) => {
+  const editCard = (cardID: number) => {
     setEditedID(cardID);
-    setEditedTex(cards.find((card, index) => index === cardID));
+    if (cards) {
+      setEditedTex(cards.find((card, index) => index === cardID));
+    }
     setShowPopup(true);
   };
 
   const savePopup = () => {
-    const newData = cards.map((item, index) => {
-      if (index === editedID) {
-        return { title: editedText.title, description: editedText.description };
-      }
-      return item;
-    });
-    setICards(newData);
-    setShowPopup(false);
+    if (cards) {
+      const newData = cards.map((item, index) => {
+        if (index === editedID && editedText) {
+          return {
+            title: editedText.title,
+            description: editedText.description,
+          };
+        }
+        return item;
+      });
+      setICards(newData);
+      setShowPopup(false);
+    }
   };
 
   const cancelEdit = () => {
     setShowPopup(false);
-  }
+  };
 
-  const addCard = (idea) => {
+  const addCard = (idea: CardType) => {
     //Add idea as a card
     if (idea.title.length > 0 && idea.description.length > 0) {
       setICards((prev) => [...prev, idea]);
