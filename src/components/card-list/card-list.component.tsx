@@ -3,6 +3,7 @@ import FormCard from "../form-card/form-card.component";
 import "./card-list.styles.css";
 import { useState, useEffect } from "react";
 import Popup from "../popup/popup.component";
+import { ChangeEvent } from "react";
 
 const CardList = () => {
   type CardType = {
@@ -10,18 +11,23 @@ const CardList = () => {
     description: string;
   };
 
-  const DefaultCardValues: CardType[] = {
-    title: "",
-    description: "",
-  };
+  const DefaultCardValues: CardType[] = [
+    {
+      title: "",
+      description: "",
+    },
+  ];
 
   //------------------------------------------- declaration of all values ----------------------------------------------------
 
   const [cards, setICards] = useState<CardType[]>(DefaultCardValues);
-  const [showPopup, setShowPopup] = useState(false);
-  const [editedText, setEditedTex] = useState<CardType>();
-  const [editedID, setEditedID] = useState<number>();
-  const [count, setCount] = useState(0);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [editedText, setEditedTex] = useState<CardType>({
+    title: "",
+    description: "",
+  });
+  const [editedID, setEditedID] = useState<number | null>(null);
+  const [count, setCount] = useState<number>(0);
 
   //----------------------------------------------------useEffects ------------------------------------------------------------
 
@@ -51,10 +57,14 @@ const CardList = () => {
   };
 
   const editCard = (cardID: number) => {
+    const foundCard = cards[cardID];
+    // if (cards) {
+    //   setEditedTex(cards.find((_, index) => index === cardID));
+    // }
+
+    if (!foundCard) return;
     setEditedID(cardID);
-    if (cards) {
-      setEditedTex(cards.find((card, index) => index === cardID));
-    }
+    setEditedTex(foundCard);
     setShowPopup(true);
   };
 
@@ -87,15 +97,19 @@ const CardList = () => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
 
     if (name === "description") {
       //Check if we are changing description to keep control of count
       setCount(value.length);
-      setEditedTex((prev) => {
-        return { ...prev, [name]: value };
-      });
+      if (editedText) {
+        setEditedTex((prev) => {
+          return { ...prev, [name]: value };
+        });
+      }
     } else {
       setEditedTex((prev) => {
         return { ...prev, [name]: value };
@@ -114,7 +128,6 @@ const CardList = () => {
               key={`${title}-${idx}`}
               title={title}
               description={description}
-              idx={idx}
               onRemove={() => cardRemoved(idx)}
               onEdit={() => editCard(idx)}
             />
