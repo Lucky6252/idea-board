@@ -6,7 +6,6 @@ import { PropsWithChildren } from 'react';
 type PopupProps = PropsWithChildren<{
   onSave: () => void;
   onCancel: () => void;
-  // children: Element[];
 }>;
 
 const Popup = ({ onSave, onCancel, children } : PopupProps) => {

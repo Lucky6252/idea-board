@@ -16,7 +16,6 @@
 .footer-container {
     display: flex;
     flex-direction: column;
-    background: #E8E8E8;
     height: 70%;
     margin: 20px 30px;
     border-radius: 8px;

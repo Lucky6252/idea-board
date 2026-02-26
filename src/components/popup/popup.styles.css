@@ -17,7 +17,8 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   max-width: 400px;
   text-align: center;
-  background-image: url('../../assets/background/grey-background.svg');
+  background-color: #E6E6E9;
+  
 }
 
 .btnSave-edit {
