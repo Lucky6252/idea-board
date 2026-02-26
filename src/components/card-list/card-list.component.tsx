@@ -20,9 +20,14 @@ const CardList = () => {
     },
   ];
 
+  const InitializeFromLocalStorage = ():CardType[] => {
+    const dataFromLocalStorage = localStorage.getItem("ideas");
+    return dataFromLocalStorage ? JSON.parse(dataFromLocalStorage) : [{title: "", description: ""}];
+  }
+
   //------------------------------------------- declaration of all values ----------------------------------------------------
 
-  const [cards, setICards] = useState<CardType[]>(DefaultCardValues);
+  const [cards, setICards] = useState<CardType[]>(InitializeFromLocalStorage);
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [editedText, setEditedTex] = useState<CardType>({
     title: "",

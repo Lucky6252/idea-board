@@ -1,8 +1,15 @@
 import './popup.styles.css'
 import { MdSave } from "react-icons/md";
 import { MdCancel } from "react-icons/md";
+import { PropsWithChildren } from 'react';
 
-const Popup = ({ onSave, onCancel, children }) => {
+type PopupProps = PropsWithChildren<{
+  onSave: () => void;
+  onCancel: () => void;
+  // children: Element[];
+}>;
+
+const Popup = ({ onSave, onCancel, children } : PopupProps) => {
   return (
     <div className="popup-overlay">
       <div className="popup-content">
