@@ -1,6 +1,8 @@
 .App {
+  height: 100%;
   padding: 0px auto;
-  background-image: url("./assets/background/subtle-prism.svg");
+  /* background-image: url("./assets/background/grey-background.svg"); */
+  background-color: #66666E;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -5,11 +5,13 @@ import { useState, useEffect } from "react";
 import Popup from "../popup/popup.component";
 import { ChangeEvent } from "react";
 
-const CardList = () => {
-  type CardType = {
+export type CardType = {
     title: string;
     description: string;
   };
+
+const CardList = () => {
+  
 
   const DefaultCardValues: CardType[] = [
     {

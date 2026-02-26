@@ -11,6 +11,10 @@
   margin-left: 10px;
 }
 
+.head-container h1 {
+  color: #F4F4F6;
+}
+
 .logo-container .logo {
   border-radius: 50%;
   width: 100px;

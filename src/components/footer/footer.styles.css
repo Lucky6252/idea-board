@@ -21,6 +21,8 @@
     margin: 20px 30px;
     border-radius: 8px;
     justify-content: space-between;
+    /* background-image: url('../../assets/background/background-2.svg'); */
+    background-color: #E6E6E9;
 }
 
 .footer-container .idea-board-logo {
@@ -62,6 +64,7 @@
     background-color: 	#D3D3D3;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    background-color: #F4F4F6;
 }
 
 @media (max-width: 811px){

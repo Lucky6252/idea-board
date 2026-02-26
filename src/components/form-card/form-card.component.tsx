@@ -1,8 +1,16 @@
 import { useState } from "react";
 import "./form-card.styles.css";
 import { MdSave } from "react-icons/md";
+import { CardType } from "../card-list/card-list.component";
+import { ChangeEvent } from "react";
+import { FormEvent } from "react";
+import { CSSProperties } from "react";
 
-const FormCard = (props) => {
+type PropsType = {
+  onSubmit: (Card: CardType) => void;
+}
+
+const FormCard = ({onSubmit}: PropsType) => {
   //-------------------declaration of all varriables-----------------------------------------------------------------------------
 
   const [idea, setIdea] = useState({
@@ -14,13 +22,13 @@ const FormCard = (props) => {
 
   //-------------------- functions-----------------------------------------------------------------------------------------------
 
-  const counterColorChange = {
+  const counterColorChange: CSSProperties = {
     color: "red",
     visibility: count >= 100 ? "visible" : "hidden", //Make count visible when character count gets to 100
   };
 
   //   handle changes in the input fields
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
     if (name === "description") {
@@ -36,7 +44,7 @@ const FormCard = (props) => {
     }
   };
 
-  const saveIdea = (e) => {
+  const saveIdea = (e: FormEvent) => {
     e.preventDefault();
 
     if (idea.title.length > 0 && idea.description.length > 0) {
@@ -46,7 +54,7 @@ const FormCard = (props) => {
         title: "",
         description: "",
       });
-      props.onSubmit(idea);
+      onSubmit(idea);
     } else {
       alert("Please enter information to both inputs");
     }

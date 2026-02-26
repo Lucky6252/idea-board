@@ -10,6 +10,8 @@
   border: 1px solid black;
   margin-top: 5px;
   transition: transform 0.25s ease-out;
+  /* background-image: url('../../assets/background/grey-background.svg'); */
+  background-color: #E6E6E9;
 
   display: flex;
   flex-direction: column;
@@ -27,10 +29,12 @@
   text-align: center;
   height: auto;
   font-size: 1.2rem;
+  color: #000000;
 }
 
 .card-container p {
   font-size: 0.9rem;
+  color: #000000;
 }
 
 .card-container .btn-container {
@@ -43,23 +47,23 @@
 }
 
 .btn-container .delete-btn {
-  color: black;
+  color: #000000;
   width: 20px;
   height: 30px;
   cursor: pointer;
 }
 
 .btn-container .delete-btn:hover {
-  color: dimgray;
+  color: #66666E;
 }
 
 .btn-container .edit-btn {
-  color: black;
+  color: #000000;
   width: 20px;
   height: 30px;
   cursor: pointer;
 }
 
 .btn-container .edit-btn:hover {
-  color: dimgray;
+  color: #66666E;
 }
