@@ -8,9 +8,9 @@ import { CSSProperties } from "react";
 
 type PropsType = {
   onSubmit: (Card: CardType) => void;
-}
+};
 
-const FormCard = ({onSubmit}: PropsType) => {
+const FormCard = ({ onSubmit }: PropsType) => {
   //-------------------declaration of all varriables-----------------------------------------------------------------------------
 
   const [idea, setIdea] = useState({
@@ -28,7 +28,9 @@ const FormCard = ({onSubmit}: PropsType) => {
   };
 
   //   handle changes in the input fields
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
 
     if (name === "description") {
@@ -87,11 +89,11 @@ const FormCard = ({onSubmit}: PropsType) => {
         />
       </div>
       <div className="btnContainer">
-       <p className="countLabel" style={counterColorChange}>{count}/140</p>
-        <MdSave className="btnSave" onClick={saveIdea}/>
-       
+        <p className="countLabel" style={counterColorChange}>
+          {count}/140
+        </p>
+        <MdSave className="btnSave" onClick={saveIdea} />
       </div>
-      
     </form>
   );
 };

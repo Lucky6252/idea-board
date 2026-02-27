@@ -11,14 +11,6 @@ export type CardType = {
   };
 
 const CardList = () => {
-  
-
-  const DefaultCardValues: CardType[] = [
-    {
-      title: "",
-      description: "",
-    },
-  ];
 
   const InitializeFromLocalStorage = ():CardType[] => {
     const dataFromLocalStorage = localStorage.getItem("ideas");
